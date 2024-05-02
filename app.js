@@ -12,8 +12,13 @@ const compression = require('compression');
 const orderRouter = require('./routes/orderRoutes')
 const productRouter = require('./routes/productRoutes')
 const userRouter = require('./routes/userRoutes')
+const brandRouter = require('./routes/brandRoutes')
+const authRouter = require('./routes/authRoutes')
+const warehouseRouter = require('./routes/warehouseRoutes')
+const partnerRouter = require('./routes/partnerRoutes')
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
+//const cors=require("cors")
 
 
 // 1) GLOBAL MIDDLEWARES
@@ -25,7 +30,14 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+//app.use(cors(corsOptions))
+
 app.use(express.json())
+app.use('/api/auth',authRouter);
+app.use('/api/ware',warehouseRouter);
+app.use('/',userRouter);
+app.use('/api/partner',partnerRouter);
+app.use('/api/brand',brandRouter);
 // Limit requests from same API
 const limiter = rateLimit({   // global middleware
     max: 100000,
