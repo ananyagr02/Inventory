@@ -29,7 +29,8 @@ app.use(helmet());
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
-
+app.set('views', __dirname + '/views')
+app.set('view engine', 'ejs');
 //app.use(cors(corsOptions))
 
 app.use(express.json())
