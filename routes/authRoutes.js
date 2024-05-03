@@ -7,11 +7,11 @@ const authController = require('../controllers/authController');
 
 
 // Define a route for /register-page
-router.post('/register-page',authController.register);
+router.post('/signup',authController.register);
 
 
 // Login route
-router.post('/login-page', authController.login);
+router.post('/login', authController.login);
 
 // Logout route
 router.get('/logout', authController.logout);
