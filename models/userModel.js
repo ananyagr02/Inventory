@@ -25,31 +25,31 @@ const userSchema = new mongoose.Schema({
         // required: true,
         validate: phoneNumberValidator // Apply custom validator
     },
-    warehouseAddress: {
-        // brand
-        // id from warehouse table
-        street: {
-        type: String,
-        //   required: true
-        },
-        city: {
-        type: String,
-        //   required: true
-        },
-        state: {
-        type: String,
-        //   required: true
-        },
-        postalCode: {
-        type: String,
-        //   required: true
-        },
-        country: {
-        type: String,
-        default: "India"
-        //   required: true
-        }
-    },
+    // warehouseAddress: {
+    //     // brand
+    //     // id from warehouse table
+    //     street: {
+    //     type: String,
+    //     //   required: true
+    //     },
+    //     city: {
+    //     type: String,
+    //     //   required: true
+    //     },
+    //     state: {
+    //     type: String,
+    //     //   required: true
+    //     },
+    //     postalCode: {
+    //     type: String,
+    //     //   required: true
+    //     },
+    //     country: {
+    //     type: String,
+    //     default: "India"
+    //     //   required: true
+    //     }
+    // },
 
     role: {
         type: String,

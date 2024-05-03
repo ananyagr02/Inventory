@@ -45,7 +45,8 @@ const AppError = require('./../utils/appError');
         email: req.body.email,
         password: req.body.password,
         passwordConfirm: req.body.passwordConfirm,
-        role: req.body.role
+        role: req.body.role,
+        warehouseId: req.body.warehouseId
     });
 
     createSendToken(newUser, 201, res);

@@ -3,10 +3,12 @@ const slugify = require('slugify');
 const validator = require('validator');
 const warehouseSchema = new mongoose.Schema({
     warehouseCompany: {
-        type: String
+        type: String,
+        required: [true, 'Please tell company of warehouse!']
     },
     warehouseId:{
-        type: String
+        type: String,
+        required: [true, 'Please tell us warehouse Id!']
     },
     warehouseAddress: {
         // brand

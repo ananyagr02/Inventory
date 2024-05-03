@@ -18,7 +18,7 @@ const warehouseRouter = require('./routes/warehouseRoutes')
 const partnerRouter = require('./routes/partnerRoutes')
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
-//const cors=require("cors")
+const cors=require("cors")
 
 
 // 1) GLOBAL MIDDLEWARES

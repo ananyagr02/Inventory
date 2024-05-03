@@ -3,7 +3,7 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
 
-exports.pabout=catchAsync(async(req,res)=>{
+exports.create=catchAsync(async(req,res)=>{
     try {
         const {name,email,phoneNumber,role,brandId}=req.body;
         const partnerExist= await Partner.findOne({email})
@@ -15,4 +15,26 @@ exports.pabout=catchAsync(async(req,res)=>{
     } catch (error) {
         console.log(error)
     }
-});                       
+});   
+
+exports.about = catchAsync(async(req, res,next) =>{
+    
+
+    // EXECUTE QUERY
+    const features = new APIFeatures(Partner.find().populate('brandId'), req.query)
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate();
+    const partners= await features.query;
+
+    // SEND RESPONSE
+    res.status(200).json({
+        status: "success",
+        results: partners.length,
+        data:{
+            partners
+        }
+    });
+
+});

@@ -7,7 +7,7 @@ const authController = require('../controllers/authController');
 
 
 // Define a route for /register-page
-router.post('/signup',authController.register);
+router.post('/signup',authController.signup);
 
 
 // Login route

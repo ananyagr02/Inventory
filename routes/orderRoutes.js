@@ -11,13 +11,14 @@ const authController = require('./../controllers/authController');
 // router.route('/monthly-plan/:year').get(orderController.getMonthlyPlan);
 
 router
-.route('/:id')
-.get(orderController.getOrder)
-.patch(orderController.updateOrder)
-.delete(authController.protect,
-    authController.restrictTo('admin', 'lead-guide'),
-    orderController.deleteOrder);
+.route('/:identifier')
+.get(authController.protect,orderController.getOrderByIdOrTypeOrPartner)  // view order option
 
+.patch(authController.protect,
+     orderController.updateOrder)
+
+.delete(authController.protect,
+    orderController.deleteOrder);
 router
 .route('/')
 .get(authController.protect,orderController.getAllOrders)
