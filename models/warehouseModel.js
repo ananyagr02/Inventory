@@ -28,11 +28,6 @@ const warehouseSchema = new mongoose.Schema({
         postalCode: {
         type: String,
         //   required: true
-        },
-        country: {
-        type: String,
-        default: "India"
-        //   required: true
         }
     },
     partnerId: [{
