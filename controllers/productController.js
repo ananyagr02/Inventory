@@ -6,6 +6,7 @@ const Product = require('./../models/productModel')
 const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
+
 // exports.checkID = (req,res,next,val) =>{
 //     console.log(`Product id is ${val}`);
 //     if(req.params.id*1 > products.length){
@@ -38,7 +39,7 @@ exports.getAllProducts = catchAsync(async(req, res,next) =>{
     
 
         // EXECUTE QUERY
-        const features = new APIFeatures(Product.find().populate('brandId','warehouseId','orderId'), req.query)
+        const features = new APIFeatures(Product.find().populate('brandId' ,'warehouseId','orderId'), req.query)
         .filter()
         .sort()
         .limitFields()

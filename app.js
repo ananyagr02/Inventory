@@ -19,7 +19,7 @@ const partnerRouter = require('./routes/partnerRoutes')
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const cors=require("cors")
-
+app.use(cors());
 
 // 1) GLOBAL MIDDLEWARES
 // Set security HTTP headers
@@ -31,12 +31,17 @@ if (process.env.NODE_ENV === 'development') {
 }
 app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs');
-//app.use(cors(corsOptions))
+const corsOptions = {
+    origin: ' * ',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json())
 app.use('/api/auth',authRouter);
 app.use('/api/ware',warehouseRouter);
-app.use('/',userRouter);
 app.use('/api/partner',partnerRouter);
 app.use('/api/brand',brandRouter);
 // Limit requests from same API

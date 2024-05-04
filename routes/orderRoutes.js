@@ -16,9 +16,8 @@ router
 
 .patch(authController.protect,
      orderController.updateOrder)
+router.delete('/:id',orderController.deleteOrder);
 
-.delete(authController.protect,
-    orderController.deleteOrder);
 router
 .route('/')
 .get(authController.protect,orderController.getAllOrders)
