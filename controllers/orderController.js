@@ -127,5 +127,38 @@ exports.deleteOrder =catchAsync(async(req, res,next)=>{
             status: "success",
             data: null
         })
-    })
+    });
 
+
+    exports.summarizeOrdersByMonthAndType = async (req, res) => {
+        try {
+            const { orderType } = req.body; // Extract the order type from query parameters
+            const currentMonth = new Date().getMonth() + 1; // Get the current month
+            
+           
+            // Query to summarize orders by month and order type
+        const summary = await Order.aggregate([
+            {
+                $match: {
+                    orderType: orderType, // Match orders with the specified order type
+                    orderDate: { $gte: new Date(new Date().getFullYear(), currentMonth - 1, 1), $lt: new Date(new Date().getFullYear(), currentMonth, 1) } // Match orders for the current month
+                }
+            },
+            {
+                $group: {
+                    _id: { month: { $month: '$orderDate' }, type: '$orderType' }, // Group by month and order type
+                    totalOrders: { $sum: 1 }, // Count the number of orders
+                    totalAmount: { $sum: '$paymentAmount' } // Calculate the total order amount
+                }
+            }
+        ]);
+    
+        res.status(200).json(summary); // Return the summary directly
+        } catch (err) {
+            res.status(500).json({
+                status: 'error',
+                message: err.message
+            });
+        }
+    };
+    

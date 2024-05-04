@@ -12,7 +12,7 @@ const authController = require('./../controllers/authController');
 
 router
 .route('/:identifier')
-.get(authController.protect,orderController.getOrderByIdOrTypeOrPartner)  // view order option
+//.get(authController.protect,orderController.getOrderByIdOrTypeOrPartner)  // view order option
 
 .patch(authController.protect,
      orderController.updateOrder)
@@ -22,7 +22,7 @@ router
 .route('/')
 .get(authController.protect,orderController.getAllOrders)
 .post(orderController.createOrder);
-
+router.get('/summary', orderController.summarizeOrdersByMonthAndType);
 module.exports = router;
 
 
