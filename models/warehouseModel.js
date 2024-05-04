@@ -4,11 +4,11 @@ const validator = require('validator');
 const warehouseSchema = new mongoose.Schema({
     warehouseCompany: {
         type: String,
-        required: [true, 'Please tell company of warehouse!']
+        required: [true, 'Please enter the warehouse company!']
     },
-    warehouseId:{
+    warehouseCode:{
         type: String,
-        required: [true, 'Please tell us warehouse Id!']
+        required: [true, 'Please tell us warehouse code!']
     },
     warehouseAddress: {
         // brand
@@ -25,13 +25,8 @@ const warehouseSchema = new mongoose.Schema({
         type: String,
         //   required: true
         },
-        postalCode: {
+        pinCode: {
         type: String,
-        //   required: true
-        },
-        country: {
-        type: String,
-        default: "India"
         //   required: true
         }
     },

@@ -2,10 +2,7 @@ const mongoose = require('mongoose')
 //const slugify = require('slugify');
 const validator = require('validator');
 const orderSchema = new mongoose.Schema({
-    orderName: {
-        type: String
-    },
-    
+        
     orderDate: {
         type: Date,
         required: [true, "An order must have a date"],
@@ -19,7 +16,7 @@ const orderSchema = new mongoose.Schema({
         },
 
     itemList: { // 2D array -> company and its product required
-        type: [String],
+        type: String,
        // required: [true, 'An order must have an item list']
     },
     status:{
