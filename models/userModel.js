@@ -74,13 +74,7 @@ const userSchema = new mongoose.Schema({
         }
     },
     passwordChangedAt: Date,
-    passwordResetToken: String,
-    passwordResetExpires: Date,
-    active: {  //  user active or not -> or deleted acc-> set to inactive
-        type: Boolean,
-        default: true,
-        select: false
-    },
+   
 
     warehouseId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -119,38 +113,6 @@ const userSchema = new mongoose.Schema({
     ) {
     return await bcrypt.compare(candidatePassword, userPassword);
     };
-
-//     userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
-//     if (this.passwordChangedAt) {   // if passwordChangedAt field occurs in schema -> meaning that password was changed
-//         const changedTimestamp = parseInt(
-//         this.passwordChangedAt.getTime() / 1000,
-//         10 // 10 is base for parsing in int 
-//         );
-// // converting date to timesatmep->this.passwordChangedAt.getTime() returns time stamp in milliseconds
-//         return JWTTimestamp < changedTimestamp; // true if password was changed after jwt was issued
-//     }
-
-//     // False means NOT changed
-//     return false;
-//     };
-
-//     userSchema.methods.createPasswordResetToken = function() {
-//     // never store plain reset tokens in database
-//         const resetToken = crypto.randomBytes(32).toString('hex');
-//  // hex to convert to hexa decimal string
-//  // when user requests password reset -> a token is issued to the user and sent on mail
-//  // then user resets the password and send back the token as well as the new password
-//     this.passwordResetToken = crypto
-//         .createHash('sha256') // algo name
-//         .update(resetToken)
-//         .digest('hex');
-
-//     console.log({ resetToken }, this.passwordResetToken);
-
-//     this.passwordResetExpires = Date.now() + 10 * 60 * 1000; // to expire in 10mins
-
-//     return resetToken; // to send through email
-//     };
 
     const User = mongoose.model('User', userSchema);
 
