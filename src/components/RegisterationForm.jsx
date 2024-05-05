@@ -6,14 +6,22 @@ import { useNavigate } from "react-router-dom";
 import "./RegisterationForm.css";
 
 const RegisterationForm = () => {
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    console.log(form)
+   }
   const navigate = useNavigate();
 
   const onButtonClick = useCallback(() => {
-    navigate("/dashboard-start");
+    navigate("/dashboard");
+  }, [navigate]);
+
+  const onButton2Click = useCallback(() => {
+    navigate("/");
   }, [navigate]);
 
   return (
-    <form className="registeration-form">
+    <form className="registeration-form" onSubmit={handleSubmit}>
       <div className="background25" />
       <div className="logo-frame">
         <h2 className="logo6">REGISTER</h2>
@@ -21,18 +29,21 @@ const RegisterationForm = () => {
       <div className="credentials-group">
         <Credentials
           inputTextLabel="Name"
-          typeHerePlaceholder="name"
+          typeHerePlaceholder="Name"
           type="text"
+          input_type="Name"
         />
         <Credentials
           inputTextLabel="Email"
           typeHerePlaceholder="Email"
           type="email"
+          input_type="Email"
         />
         <Credentials
           inputTextLabel="Phone Number"
           typeHerePlaceholder="Phone Number"
-          input_type="text"
+          type="text"
+          input_type="Phone Number"
         />
         <div className="dropdowns">
           <div className="dropdown-title" >Company Role</div>
@@ -47,23 +58,33 @@ const RegisterationForm = () => {
           </Form.Select>
         </div>
         <Credentials
-          inputTextLabel="password"
-          typeHerePlaceholder="Enter username"
-          input_type="password"
+          inputTextLabel="Password"
+          typeHerePlaceholder="Enter a valid password"
+          type="password"
+          input_type="Password"
         />
         <Credentials
           inputTextLabel="Confirm Password"
-          typeHerePlaceholder="Enter username"
-          input_type="password"
+          typeHerePlaceholder="Enter your password"
+          type="password"
+          input_type="Confirm Password"
         />
-        <Credentials
-          inputTextLabel="register"
+        {/* <Credentials
+          inputTextLabel="Register"
           typeHerePlaceholder="register"
           input_type="submit"
           idval="register_conf"
-        />
-        <div className="button-container">
+        /> */}
+<div className="button-container">
+<div className="button-frame3">
         <button className="button18" onClick={onButtonClick}>
+          <div className="input-field-instance">Submit</div>
+          <div className="background26" />
+        </button>
+        </div>
+      </div>
+        <div className="button-container">
+        <button className="button18" onClick={onButton2Click}>
           <div className="input-field-instance">Cancel</div>
           <div className="background26" />
         </button>
