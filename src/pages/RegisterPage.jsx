@@ -1,6 +1,7 @@
 import RegisterationForm from "../components/RegisterationForm";
 import Footer1 from "../components/Footer1";
 import "./RegisterPage.css";
+import React from "react"
 
 const RegisterPage = () => {
   return (
