@@ -54,12 +54,7 @@ const productSchema = new mongoose.Schema({
         enum: ['InStock', 'OutOfStock']
         
     },
-    // brandName:{
-    //     type:String,
-    //     required: [true, 'A product must have a brand']
-    // },
-    // suplierID
-    manufacturing_Date: Date,
+   
 
     // Continue with the save operation
     brandId: {

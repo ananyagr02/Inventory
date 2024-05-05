@@ -1,17 +1,14 @@
 const mongoose = require('mongoose')
-const slugify = require('slugify');
+//const slugify = require('slugify');
 const validator = require('validator');
 const orderSchema = new mongoose.Schema({
-    orderName: {
-        type: String
-    },
-    
+        
     orderDate: {
         type: Date,
         required: [true, "An order must have a date"],
         default: Date.now()
     },
-    slug:String,
+  //  slug:String,
     orderType:{
             type: String,
             enum: ['Sales', 'Purchase', 'Return'],
@@ -19,8 +16,8 @@ const orderSchema = new mongoose.Schema({
         },
 
     itemList: { // 2D array -> company and its product required
-        type: [String],
-        required: [true, 'An order must have an item list']
+        type: String,
+       // required: [true, 'An order must have an item list']
     },
     status:{
         type:String,
@@ -45,11 +42,11 @@ const orderSchema = new mongoose.Schema({
     }
 })
 
-orderSchema.pre('save', function(next){
-    // DOCUMENT middleware only runs on 'save' and create method only
-    //DOCUMENT MIDDLEWARE Runs at save command for each document but not for INsertMany()
-    this.slug = slugify(this.name, { lower: true}) //logging the document
-    next()
-})
+// orderSchema.pre('save', function(next){
+//     // DOCUMENT middleware only runs on 'save' and create method only
+//     //DOCUMENT MIDDLEWARE Runs at save command for each document but not for INsertMany()
+//     this.slug = slugify(this.name, { lower: true}) //logging the document
+//     next()
+// })
 const Order = mongoose.model("Order", orderSchema)
 module.exports = Order;

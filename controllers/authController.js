@@ -6,7 +6,7 @@ const { promisify } = require('util');
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
-const sendEmail = require('./../utils/email');
+//const sendEmail = require('./../utils/email');
 
     const signToken = id => { //atleast 32 bit long JWT_SECRET is required for best encryption of signature
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -45,7 +45,8 @@ const sendEmail = require('./../utils/email');
         email: req.body.email,
         password: req.body.password,
         passwordConfirm: req.body.passwordConfirm,
-        role: req.body.role
+        role: req.body.role,
+        warehouseId: req.body.warehouseId
     });
 
     createSendToken(newUser, 201, res);

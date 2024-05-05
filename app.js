@@ -12,9 +12,14 @@ const compression = require('compression');
 const orderRouter = require('./routes/orderRoutes')
 const productRouter = require('./routes/productRoutes')
 const userRouter = require('./routes/userRoutes')
+const brandRouter = require('./routes/brandRoutes')
+const authRouter = require('./routes/authRoutes')
+const warehouseRouter = require('./routes/warehouseRoutes')
+const partnerRouter = require('./routes/partnerRoutes')
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
-
+const cors=require("cors")
+app.use(cors());
 
 // 1) GLOBAL MIDDLEWARES
 // Set security HTTP headers
@@ -24,8 +29,21 @@ app.use(helmet());
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
+app.set('views', __dirname + '/views')
+app.set('view engine', 'ejs');
+const corsOptions = {
+    origin: ' * ',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json())
+app.use('/api/auth',authRouter);
+app.use('/api/ware',warehouseRouter);
+app.use('/api/partner',partnerRouter);
+app.use('/api/brand',brandRouter);
 // Limit requests from same API
 const limiter = rateLimit({   // global middleware
     max: 100000,
@@ -48,13 +66,8 @@ const limiter = rateLimit({   // global middleware
     app.use(
         hpp({
         whitelist: [   // avoid using hpp for the following fields
-        // like duration=5&duration=9 should work
-            'duration',
-            'ratingsQuantity',
-            'ratingsAverage',
-            'maxGroupSize',
-            'difficulty',
-            'price'
+        // like price=5&price=9 should work
+            'price','category','Stock'
         ]
         })
     );
