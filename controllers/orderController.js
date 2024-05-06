@@ -89,7 +89,7 @@ exports.getOrderByIdOrTypeOrPartner = catchAsync(async (req, res, next) => {
 
 
 exports.createOrder =catchAsync(async(req, res,next)=>{
-      
+    
 const newOrder = await Order.create(req.body)
     // req.body passed in the body of post request
     // console.log("printed")
@@ -140,7 +140,8 @@ exports.deleteOrder =catchAsync(async(req, res,next)=>{
             {
                 $match: {
                     orderType: orderType, // Match orders with the specified order type
-                    orderDate: { $gte: new Date(new Date().getFullYear(), currentMonth - 1, 1), $lt: new Date(new Date().getFullYear(), currentMonth, 1) } // Match orders for the current month
+                    orderDate: { $gte: new Date(new Date().getFullYear(), currentMonth - 1, 1),
+                         $lt: new Date(new Date().getFullYear(), currentMonth, 1) } // Match orders for the current month
                 }
             },
             {

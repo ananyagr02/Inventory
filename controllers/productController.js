@@ -174,7 +174,7 @@ exports.subtractStock = catchAsync(async (req, res, next) => {
 
 exports.updateProduct = catchAsync(async (req,res,next)=>{
     // use patch methods
-        const product = await Product.findByIdAndUpdate(req.params.id, req.pbody, {
+        const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
             new: true ,// returns the modified document rather than the original
             runValidators: true
         })

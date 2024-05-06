@@ -80,8 +80,8 @@ productSchema.pre('save', function(next){
 })
 productSchema.pre('save', function(next) {
     
-    // Check if minStock is less than or equal to Stock
-    if (this.minStock <= this.Stock) {
+    // Check if minStock is greater than or equal to Stock
+    if (this.minStock >= this.Stock) {
         const notificationData = {
             text: `Product: ${this.product_name} (ID: ${this._id}) is running low on stock! Place a purchase order`,
             duration: 5000 // Adjust notification display duration in milliseconds

@@ -7,14 +7,14 @@ const APIFeatures = require('../utils/apiFeatures');
 
 exports.create=catchAsync(async(req,res)=>{
     try {
-        const {warehouseCompany,warehouseId,warehouseAddress,partnerId}=req.body;
-        const warehouseExist= await Warehouse.findOne({warehouseId})
+        const {warehouseCompany,warehouseCode,warehouseAddress}=req.body;
+        const warehouseExist= await Warehouse.findOne({warehouseCode})
         if(warehouseExist){
             return res.status(400).json({msg:"Warehouse already exists"})
         }
-        const warehouseCreated=await Warehouse.create({warehouseCompany,warehouseId,warehouseAddress})
+        const warehouseCreated=await Warehouse.create({warehouseCompany,warehouseCode,warehouseAddress})
     
-        res.status(200).json({msg:warehouseCreated,warehouseCompany, warehouseId});
+        res.status(200).json({msg:warehouseCreated,warehouseCompany, warehouseCode});
     } catch (error) {
         console.log(error)
     }
@@ -24,7 +24,7 @@ exports.about = catchAsync(async(req, res,next) =>{
     
 
     // EXECUTE QUERY
-    const features = new APIFeatures(Warehouse.find().populate('partnerId'), req.query)
+    const features = new APIFeatures(Warehouse.find(), req.query)
     .filter()
     .sort()
     .limitFields()

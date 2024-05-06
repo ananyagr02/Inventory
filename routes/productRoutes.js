@@ -12,23 +12,34 @@ const authController = require('./../controllers/authController');
 
 router
 .route('/:identifier')
-.get(authController.protect,productController.getProductByIdOrNameOrBrand)  // view product option
+.get(
+    // authController.protect,
+    productController.getProductByIdOrNameOrBrand)  // view product option
 
-.patch(authController.protect,
-    authController.restrictTo('Receiving Clerk','Returns Clerk','Order Fulfillment Specialist'), productController.updateProduct)
-.patch(authController.protect,
-        authController.restrictTo('Receiving Clerk','Returns Clerk'), productController.addStock)
-.patch(authController.protect,
-            authController.restrictTo('Order Fulfillment Specialist'),
+.patch(
+    // authController.protect,
+    // authController.restrictTo('Receiving Clerk','Returns Clerk','Order Fulfillment Specialist'), 
+    productController.updateProduct)
+.patch(
+    // authController.protect,
+    //     authController.restrictTo('Receiving Clerk','Returns Clerk'), 
+        productController.addStock)
+.patch(
+    // authController.protect,
+    //         authController.restrictTo('Order Fulfillment Specialist'),
+
             productController.subtractStock)
 
-.delete(authController.protect,
-    authController.restrictTo('Order Fulfillment Specialist'),
+.delete(
+    // authController.protect,
+    // authController.restrictTo('Order Fulfillment Specialist'),
     productController.deleteProduct);
 
 router
 .route('/')
-.get(authController.protect,productController.getAllProducts)
+.get(
+    // authController.protect,
+    productController.getAllProducts)
 .post(productController.createProduct);
 
 module.exports = router;
