@@ -28,10 +28,9 @@ const partnerSchema = new mongoose.Schema({
         type: String,
         enum: ['Supplier', 'Distributor'],
     },
-    brandId: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Brand'
-    }]
+    brandName: {
+        type: String,
+    },
     });
 
     const Partner = mongoose.model('Partner', partnerSchema);

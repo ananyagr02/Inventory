@@ -12,8 +12,8 @@ exports.create=catchAsync(async(req,res)=>{
         if(warehouseExist){
             return res.status(400).json({msg:"Warehouse already exists"})
         }
-        const warehouseCreated=await Warehouse.create({warehouseCompany,warehouseId,warehouseAddress,partnerId})
-       
+        const warehouseCreated=await Warehouse.create({warehouseCompany,warehouseId,warehouseAddress})
+    
         res.status(200).json({msg:warehouseCreated,warehouseCompany, warehouseId});
     } catch (error) {
         console.log(error)

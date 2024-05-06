@@ -24,7 +24,7 @@ exports.getAllPartners = catchAsync(async(req, res,next) =>{
     
 
     // EXECUTE QUERY
-    const features = new APIFeatures(Partner.find().populate('brandId'), req.query)
+    const features = new APIFeatures(Partner.find(), req.query)
     .filter()
     .sort()
     .limitFields()
@@ -50,7 +50,7 @@ exports.getPartnerByIdOrNameOrBrand = catchAsync(async (req, res, next) => {
     // Check if the identifier is a valid MongoDB ObjectID
     if (mongoose.Types.ObjectId.isValid(identifier)) {
         // If it's a valid ObjectID, fetch the partner by ID
-        const partnerById = await Partner.findById(identifier).populate('brandId');
+        const partnerById = await Partner.findById(identifier)
         if (partnerById) {
             // If a partner is found by ID, return it
             return res.status(200).json({
@@ -69,7 +69,7 @@ exports.getPartnerByIdOrNameOrBrand = catchAsync(async (req, res, next) => {
             { partner_name: { $regex: new RegExp(identifier, 'i') } }, // Match partner_name
             { brandName: { $regex: new RegExp(identifier, 'i') } }      // Match brandName (if applicable)
         ]
-    }).populate('brandId');
+    })
 
     if (!partners || partners.length === 0) {
         return next(new AppError('No partners found with the given ID, name, or brand', 404));

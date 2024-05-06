@@ -135,7 +135,6 @@ exports.deleteOrder =catchAsync(async(req, res,next)=>{
             const { orderType } = req.body; // Extract the order type from query parameters
             const currentMonth = new Date().getMonth() + 1; // Get the current month
             
-           
             // Query to summarize orders by month and order type
         const summary = await Order.aggregate([
             {

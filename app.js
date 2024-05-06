@@ -12,7 +12,6 @@ const compression = require('compression');
 const orderRouter = require('./routes/orderRoutes')
 const productRouter = require('./routes/productRoutes')
 const userRouter = require('./routes/userRoutes')
-const brandRouter = require('./routes/brandRoutes')
 const authRouter = require('./routes/authRoutes')
 const warehouseRouter = require('./routes/warehouseRoutes')
 const partnerRouter = require('./routes/partnerRoutes')
@@ -43,7 +42,6 @@ app.use(express.json())
 app.use('/api/auth',authRouter);
 app.use('/api/ware',warehouseRouter);
 app.use('/api/partner',partnerRouter);
-app.use('/api/brand',brandRouter);
 // Limit requests from same API
 const limiter = rateLimit({   // global middleware
     max: 100000,

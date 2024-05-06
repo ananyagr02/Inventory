@@ -42,7 +42,7 @@ const productSchema = new mongoose.Schema({
     },
     description:{
         type:String,
-        required: [true, 'A product must have a description']
+        // required: [true, 'A product must have a description']
     },
     category: {
         type: String,
@@ -54,12 +54,11 @@ const productSchema = new mongoose.Schema({
         enum: ['InStock', 'OutOfStock']
         
     },
-   
+
 
     // Continue with the save operation
-    brandId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Brand'
+    brandName: {
+        type: String,
     },
     warehouseId: {
         type: mongoose.Schema.Types.ObjectId,

@@ -11,7 +11,6 @@ const warehouseSchema = new mongoose.Schema({
         required: [true, 'Please tell us warehouse code!']
     },
     warehouseAddress: {
-        // brand
         // id from warehouse table
         street: {
         type: String,
@@ -29,11 +28,7 @@ const warehouseSchema = new mongoose.Schema({
         type: String,
         //   required: true
         }
-    },
-    partnerId: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Partner'
-    }]
+    }
 })
 
 const Warehouse= mongoose.model("Warehouse", warehouseSchema)
