@@ -39,7 +39,7 @@ exports.getAllProducts = catchAsync(async(req, res,next) =>{
     
 
         // EXECUTE QUERY
-        const features = new APIFeatures(Product.find().populate('' ,'warehouseId','orderId'), req.query)
+        const features = new APIFeatures(Product.find().populate('warehouseId','orderId'), req.query)
         .filter()
         .sort()
         .limitFields()
